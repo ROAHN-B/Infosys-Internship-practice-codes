@@ -13,13 +13,13 @@ headers={
   "Authorization": f"Bearer {API_KEY}"
 }
 
-print(Fore.GREEN+Style.BRIGHT+"Welcome to the chatbot!!")
+print(Fore.GREEN+Style.BRIGHT+"Welcome to the chatbot!!\n")
 
 while True:
-  CV=input("Give me brief about your CV: ")
-  Job_Description=input(Fore.CYAN+Style.BRIGHT+"Give me Job Description: ")
+  CV=input(Fore.GREEN+Style.BRIGHT+"Give me brief about your CV (Type 'Exit' to close chat): "+Style.RESET_ALL)
+  Job_Description=input(Fore.CYAN+Style.BRIGHT+"\nGive me Job Description: \n"+Style.RESET_ALL)
 
-  if CV.lower()=="exit" or Job_Description=="exit" :
+  if CV.lower()=="exit" or Job_Description.lower()=="exit" :
     print("Have a nice day!!")
     break    
 
@@ -31,12 +31,11 @@ while True:
               "messages": [
                   {
                       "role":"system",
-                      "content":"""Act as a Hiring Manager."""
+                      "content":"""Act as a Hiring Manager. Tell me technological gap using provided CV and Job Description. Give Strengths and Weaknesses"""
                   },
                 {
                   "role": "user",
-                  "content": Job_Description,
-                  "content": CV
+                  "content": f"Job description:{Job_Description}\n\n candidate CV:{CV}"
                 }
               ],
               "model": "llama-3.3-70b-versatile",
@@ -45,7 +44,7 @@ while True:
       )
       if response.status_code==200:
         data=response.json()
-        print(Fore.LIGHTYELLOW_EX+Style.BRIGHT+"Answer: ",data["choices"][0]["message"]["content"])
+        print(Fore.LIGHTYELLOW_EX+Style.BRIGHT+"\nAnswer: ",data["choices"][0]["message"]["content"]+Style.RESET_ALL)
       else:
         print(f"Error: {response.status_code} - {response.text}")
   except Exception as e:
