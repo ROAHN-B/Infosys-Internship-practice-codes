@@ -1,7 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-from colorama import Fore, Style,init
+from colorama import Fore, Style
 
 load_dotenv()
 
