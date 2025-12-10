@@ -5,13 +5,23 @@ def get_sql():
     try: 
         connection=mysql.connector.connect(
         host = "localhost",
-        user = "user",
-        passwrord = "password",
-        database = "rohandb"
+        user = "root",
+        password = "Rohan@54321",
+        database = "springboard",
+        port = 3306
     )
+        if connection.is_connected():
+            print("Connection successful!!")
+            return connection 
+        else:
+            print("unable to connect!!")
+        
+    
     except Error as e:
         print(f"Error: {e}")
+        return None
     
+get_sql()
 
 
 
