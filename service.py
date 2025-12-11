@@ -1,13 +1,12 @@
 from sql import get_sql
 from mysql.connector import Error
-from fastapi import FastAPI
-
-app = FastAPI()
+from fastapi import FastAPI, APIRouter
 
 
+router=APIRouter()
 
-@app.post("/create/user")
 
+@router.post("/create/user") #API endpoint
 def create_user(name,email,password):
     db=get_sql()
     cursor = db.cursor(dictionary=True) # cursor is used to run sql commands in commands
@@ -18,9 +17,10 @@ def create_user(name,email,password):
     db.close()
     return {"message":"Values entered!!"}
 
-results = create_user("Karan ", "karan@gmail.com","karan@54321")
-print(results)
+# results = create_user("Karan ", "karan@gmail.com","karan@54321")
+# print(results)
 
+@router.get("/get/user") #API end point
 def get_user_by_id(user_id):
     try:
         db=get_sql()
@@ -40,6 +40,7 @@ def get_user_by_id(user_id):
 
 #write the function to update and delete the user
 
+@router.put("/update/user") #API end point
 def update_values(user_id,name,password,email):
     try:
         db=get_sql()
@@ -54,10 +55,10 @@ def update_values(user_id,name,password,email):
         db.close()
         cursor.close()
 
-result3=update_values(1,"saurabh","Abhijeet@54321","abhijeetmaurya@gmail.com")
-print(result3)
+# result3=update_values(1,"saurabh","Abhijeet@54321","abhijeetmaurya@gmail.com")
+# print(result3)
 
-
+@router.delete("/delete/user") #API endpoint
 def delete_values(user_id):
     try:
         db=get_sql()
@@ -78,3 +79,5 @@ def delete_values(user_id):
 # result4=delete_values(5)
 # print(result4)
 
+# http://127.0.0.1:8000/create/user  {{We use this in frontend to connect to the frontend}}
+# name,email,password -> payload (Passisng group of data in form of API)
