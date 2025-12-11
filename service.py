@@ -18,7 +18,7 @@ def create_user(name,email,password):
     db.close()
     return {"message":"Values entered!!"}
 
-results = create_user("Laukik", "laukikbelsare@gmail.com","Laukik@54321")
+results = create_user("Karan ", "karan@gmail.com","karan@54321")
 print(results)
 
 def get_user_by_id(user_id):
@@ -54,8 +54,8 @@ def update_values(user_id,name,password,email):
         db.close()
         cursor.close()
 
-# result3=update_values(1,"Abhijeet","Abhijeet@54321","abhijeetmaurya@gmail.com")
-# print(result3)
+result3=update_values(1,"saurabh","Abhijeet@54321","abhijeetmaurya@gmail.com")
+print(result3)
 
 
 def delete_values(user_id):
@@ -75,6 +75,6 @@ def delete_values(user_id):
         db.close()
         cursor.close()
 
-result4=delete_values(4)
-print(result4)
+# result4=delete_values(5)
+# print(result4)
 
