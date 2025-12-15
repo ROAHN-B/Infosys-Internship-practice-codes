@@ -17,7 +17,7 @@ def create_user(name,email,password):
     db.close()
     return {"message":"Values entered!!"}
 
-# results = create_user("Karan ", "karan@gmail.com","karan@54321")
+# results = create_user("Karan", "karan@gmail.com","karan@54321")
 # print(results)
 
 @router.get("/get/user") #API end point
